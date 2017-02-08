@@ -35,3 +35,26 @@ list_zero_lengths <- function(x){
   x_zeros <- lapply(x,zero_lengths)
   return(x_zeros)
 }
+
+
+# Function to generate vector with distance to next one.
+# Input: vector
+# Output: vector with distance to next ones
+distance_to_one <- function(input){  
+  #input <- as.numeric(na.omit(input))  
+  input_ones <- which(input==1)  
+  input_ones <- c(input_ones,length(input))
+  runs <- c(input_ones[1],diff(input_ones))
+  input_ones[length(input_ones)] <- input_ones[length(input_ones)] + 1
+  d <- rep(input_ones,runs)
+  ind <- c(1:length(input))
+  dist_to_one <- d - ind
+  return(dist_to_one)
+}
+
+# Functin to iterate over a list, returning distance to next ones# Input: list
+# Output: list of distance to one vectors
+list_distance_to_one <- function(x){
+  ldist <- lapply(x,distance_to_one)
+  return(ldist)
+}

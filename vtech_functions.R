@@ -52,7 +52,8 @@ distance_to_one <- function(input){ 
   return(dist_to_one)
 }
 
-# Functin to iterate over a list, returning distance to next ones# Input: list
+# Function to iterate over a list, returning distance to next ones
+# Input: list
 # Output: list of distance to one vectors
 list_distance_to_one <- function(x){
   ldist <- lapply(x,distance_to_one)

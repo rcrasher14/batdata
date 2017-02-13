@@ -10,8 +10,9 @@
 
 
 ###Initial setup, data import, user functions imported:
-setwd("H:/Personal/VTech Research")
-source('setup.r')
+#setwd("H:/Personal/VTech Research")  # Work filepath
+setwd("~/VTech Research")  # home filepath
+source('./scripts/setup.R')
 
 library(plyr)
 library(reshape2)
@@ -49,7 +50,7 @@ plot(species_ecdf$laci,
 #plot them all and save as individual .png files
 lapply(species, function(x){
   name <- toString(x)
-  filename <- paste(name,".png",sep="")
+  filename <- paste("./plots/",name,".png",sep="")
   png(filename)
   plot(species_ecdf[[x]], 
        main=c("ECDF of Nights Between Presence--",toupper(name)),

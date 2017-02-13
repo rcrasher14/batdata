@@ -1,14 +1,17 @@
-# experimenting with finding distance to next one
+### Scripts to calculate the distance to the nearest positive presence night,
+# or "1", for each night in a given set of data.
 
-m1 <- as.numeric(na.omit(species_tables$laci$`E-FO11-ACT`))
-m1m <- which(m1==1)
-m1m <- c(m1m,length(m1))
-m1runs <- c(m1m[1],diff(m1m))
-m1m[length(m1m)] <- m1m[length(m1m)] + 1
-d <- rep(m1m,m1runs)
-ind <- c(1:length(m1))
+# This assumes you source the 'setup.r' script which includes user defined functions,
+# and that you've set up the za matrix and the species_tables list
+# from the 'multi_dim_data.R' script.
 
-distance_to_one <- d - ind
+### Example for one species:
+laci_dist <- list_distance_to_one(species_tables$laci)
 
-m1
-distance_to_one
+### A list across all species:
+all_dist_to_one <- lapply(species_tables,list_distance_to_one)
+
+
+# Current issues:
+# 1) how to keep julian calendar data fo reach item?
+# 2) how to handle NA data?  or what about zeros at the tail of an instance?

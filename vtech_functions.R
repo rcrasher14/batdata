@@ -40,9 +40,9 @@ list_zero_lengths <- function(x){
 # Function to generate vector with distance to next one.
 # Input: vector
 # Output: vector with distance to next ones
-distance_to_one <- function(input){  
-  #input <- as.numeric(na.omit(input))  
-  input_ones <- which(input==1)  
+distance_to_one <- function(input){
+  #input <- as.numeric(na.omit(input))
+  input_ones <- which(input==1)
   input_ones <- c(input_ones,length(input))
   runs <- c(input_ones[1],diff(input_ones))
   input_ones[length(input_ones)] <- input_ones[length(input_ones)] + 1
@@ -57,5 +57,8 @@ distance_to_one <- function(input){ 
 # Output: list of distance to one vectors
 list_distance_to_one <- function(x){
   ldist <- lapply(x,distance_to_one)
+  # Need to figure out how to maintain the date data found in the input
+  # row.names.  Trying sapply with use.names=T
+  #ldist <- sapply(x,distance_to_one,simplify=F,USE.NAMES = T)
   return(ldist)
 }

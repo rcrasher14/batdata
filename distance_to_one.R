@@ -16,3 +16,15 @@ laci_dist <- list_distance_to_one(species_tables$laci)
 
 ### A list across all species:
 all_dist_to_one <- lapply(species_tables,list_distance_to_one)
+
+### Write this data out into .csv format, one for each species
+lapply(species,function(x){ # looping over species
+  name <- toString(x)
+  subdir <- "./data/Output_Distance To One"
+  if (!file.exists(subdir)) # if you don't have a subfolder under data for this
+  {
+    dir.create(subdir) # then create one
+  }
+  filename <- paste(subdir,"/distanceToOne_",name,".csv",sep="")
+  write.csv(all_dist_to_one[[x]],file=filename) # write data
+}) # end writing loop
